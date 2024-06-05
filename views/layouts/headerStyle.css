@@ -1,0 +1,131 @@
+
+header {
+    background-color: #2C3E50;
+    padding: 10px 0;
+    color: white;
+}
+
+.containerHeaderDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.LogoA {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.navigationMenuUl {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-itemLi {
+    margin: 0 15px;
+}
+
+.nav-linkA {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-linkA:hover {
+    color: #E67E22;
+}
+
+.SearchForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border-top: 2px solid #ffffff;
+    padding: 10px;
+
+}
+
+.searchInput {
+    padding: 5px;
+    margin-right: 1px;
+    border: 2px solid #ccc;
+}
+#searchInput-position{
+    border-radius: 15px 0 0 15px;
+    padding-right: 150px;
+}
+
+.searchButton {
+    padding: 5px 10px;
+    border: none;
+    background-color: #E67E22;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+    background-color: #E67E22;
+}
+
+
+@media (max-width: 670px) {
+    .containerHeaderDiv {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .navigationMenuUl {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        background-color: #2C3E50;
+    }
+
+    #searchInput-position,#searchInput-city,.searchButton{
+        border-radius: 10px;
+    }
+
+    .navigationMenuUl.show {
+        display: flex;
+    }
+
+    .nav-itemLi {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .SearchForm {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0 10px 0;
+    }
+
+    .searchInput, .searchButton {
+        width: calc(100% - 20px);
+        margin: 5px 0;
+    }
+}
