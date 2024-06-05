@@ -7,11 +7,20 @@ class Template
 
     protected $templateFiltPath;
     protected $paramsArray;
+    public function __set($name,$value)
+    {
+        Core::get()->template->setParam($name,$value);
+    }
     public function __construct($templateFilePath)
     {
         $this->templateFiltPath = $templateFilePath;
         $this->paramsArray = [];
     }
+    public function setTemplateFilePath($path)
+    {
+        $this->templateFiltPath = $path;
+    }
+
     public function setParam($paramName,$paramValue): void
     {
         $this->paramsArray[$paramName] = $paramValue;

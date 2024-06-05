@@ -2,10 +2,13 @@
 
 namespace controllers;
 
-class NewsController
+use core\Controller;
+use core\Template;
+
+class NewsController extends Controller
 {
-    public function actionAdd($params): void
+    public function actionAdd($params)
     {
-        echo "NewsController ->actionAdd ";
+        return $this->render();
     }
 }

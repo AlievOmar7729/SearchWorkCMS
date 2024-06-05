@@ -10,6 +10,8 @@ $route = $_GET['route'] ?? '';
 
 
 
-$router = new core\Router($route);
-$router->run();
-$router->done();
+$core = core\Core::get();
+$core->run($route);
+$core->done();
+
+

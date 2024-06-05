@@ -2,13 +2,13 @@
 
 namespace controllers;
 
-class SiteController
+use core\Controller;
+use core\Template;
+
+class SiteController extends Controller
 {
     public function actionIndex()
     {
-        return[
-            'Content' => 'НОВИНА1 НОВИНА2',
-            'Title' => 'actionIndex'
-        ];
+        return $this->render();
     }
 }

@@ -11,11 +11,10 @@ class Router
     public function __construct($route)
     {
         $this->route = $route;
-        $this->indexTemplate = new \core\Template('views/layouts/index.php');
 
 
     }
-    public function run(): void
+    public function run()
     {
         $parts = explode('/',$this->route);
         if(strlen($parts[0]) == 0){
@@ -25,24 +24,25 @@ class Router
         if(count($parts)==1){
             $parts[1] = "index";
         }
-
+        \core\Core::get()->moduleName = $parts[0];
+        \core\Core::get()->actionName = $parts[1];
         $controller = 'controllers\\'.ucfirst($parts[0])."Controller" ;
         $method = "action".ucfirst($parts[1]);
 
         if(class_exists($controller) && method_exists($controller,$method)){
             $controllerObject = new $controller();
             array_splice($parts,0,2);
-            $params = $controllerObject->$method($parts);
-            $this->indexTemplate->setParams($params);
+            return $controllerObject->$method($parts);
         }
         else{
             $this->error(404);
         }
+        //!!! return
     }
 
     public function done(): void
     {
-        $this->indexTemplate->display();
+
     }
     public function error($code): void
     {
