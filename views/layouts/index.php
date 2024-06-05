@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="headerStyle.css" rel="stylesheet">
-    <link href="footerStyle.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <script defer src="headerMenu.js"></script>
-    <title>Document</title>
+    <link href="../../style/headerStyle.css" rel="stylesheet">
+    <link href="../../style/footerStyle.css" rel="stylesheet">
+    <link href="../../style/style.css" rel="stylesheet">
+    <script defer src="../../style/headerMenu.js"></script>
+    <title><?=$Title?></title>
 </head>
 <body>
 <div class="wrapper">
@@ -45,7 +45,7 @@
 </header>
 
 <main>
-    <span>MAIN BLOCK</span>
+    <?=$Content?>
 </main>
 
 <footer>

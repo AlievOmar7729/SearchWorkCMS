@@ -6,6 +6,9 @@ class SiteController
 {
     public function actionIndex()
     {
-        echo "MainPage";
+        return[
+            'Content' => 'НОВИНА1 НОВИНА2',
+            'Title' => 'actionIndex'
+        ];
     }
 }

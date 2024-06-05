@@ -4,7 +4,7 @@ namespace controllers;
 
 class NewsController
 {
-    public function actionAdd(): void
+    public function actionAdd($params): void
     {
         echo "NewsController ->actionAdd ";
     }

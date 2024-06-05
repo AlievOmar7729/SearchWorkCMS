@@ -8,5 +8,8 @@ spl_autoload_register(static function ($className) {
 
 $route = $_GET['route'] ?? '';
 
+
+
 $router = new core\Router($route);
 $router->run();
+$router->done();
