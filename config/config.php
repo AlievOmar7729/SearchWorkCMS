@@ -1,0 +1,4 @@
+<?php
+$Config[] = [
+    'title' => 'Default'
+];

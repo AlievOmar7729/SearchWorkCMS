@@ -9,7 +9,6 @@ spl_autoload_register(static function ($className) {
 $route = $_GET['route'] ?? '';
 
 
-
 $core = core\Core::get();
 $core->run($route);
 $core->done();
