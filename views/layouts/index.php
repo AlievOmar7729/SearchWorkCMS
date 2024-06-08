@@ -2,6 +2,7 @@
 /** @var string $Title */
 /** @var string $Content */
 /** @var string $Role */
+/** @var string $Name */
 if(empty($Title))
     $Title = "";
 if(empty($Content))
@@ -10,8 +11,10 @@ if(empty($Content))
 if(isset($_SESSION['user'])){
     $user = $_SESSION['user'];
     $Role = $user['role'];
+    $Name = $user['login'];
 }else{
     $Role = "noLogged";
+    $Name = "";
 }
 
 ?>
@@ -36,7 +39,7 @@ if(isset($_SESSION['user'])){
 
 <header>
 
-    <?php if($Role == 'applicant'): ?>
+    <?php if($Role == 'applicant'):?>
     <div class="containerHeaderDiv">
         <a href="/" class="LogoA">
             <span class="LogoSpan">SearchWork</span>
@@ -50,14 +53,15 @@ if(isset($_SESSION['user'])){
                 <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
             </li>
             <li class="nav-itemLi">
-                <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
+                <a href="/resume/add" class="nav-linkA">Розмістити резюме</a>
             </li>
             <li class="nav-itemLi">
-                <a href="/users/index" class="nav-linkA">User Name</a>
+                <a href="/users/index" class="nav-linkA"><?=$Name?></a>
             </li>
         </ul>
     </div>
     <?php endif; ?>
+
     <?php if($Role == 'employer'): ?>
         <div class="containerHeaderDiv">
             <a href="/" class="LogoA">
@@ -69,17 +73,18 @@ if(isset($_SESSION['user'])){
                     <a href="/news/index" class="nav-linkA">Новини</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                    <a href="/vacancy/add" class="nav-linkA">Надати вакансію</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
+                    <a href="/vacancy/my" class="nav-linkA">Мої вакансії</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/users/index" class="nav-linkA">User Name</a>
+                    <a href="/users/index" class="nav-linkA"><?=$Name?></a>
                 </li>
             </ul>
         </div>
     <?php endif; ?>
+
     <?php if($Role == 'admin'): ?>
         <div class="containerHeaderDiv">
             <a href="/" class="LogoA">
@@ -91,17 +96,15 @@ if(isset($_SESSION['user'])){
                     <a href="/news/index" class="nav-linkA">Новини</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                    <a href="/news/add" class="nav-linkA">Додати новину</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
-                </li>
-                <li class="nav-itemLi">
-                    <a href="/users/index" class="nav-linkA">User Name</a>
+                    <a href="/users/index" class="nav-linkA"><?=$Name?></a>
                 </li>
             </ul>
         </div>
     <?php endif; ?>
+
     <?php if($Role == 'noLogged'): ?>
         <div class="containerHeaderDiv">
             <a href="/" class="LogoA">
@@ -113,13 +116,10 @@ if(isset($_SESSION['user'])){
                     <a href="/news/index" class="nav-linkA">Новини</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансію</a>
                 </li>
                 <li class="nav-itemLi">
-                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
-                </li>
-                <li class="nav-itemLi">
-                    <a href="/users/index" class="nav-linkA">User Name</a>
+                    <a href="/users/login" class="nav-linkA">Увійти</a>
                 </li>
             </ul>
         </div>

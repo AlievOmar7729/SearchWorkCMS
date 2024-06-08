@@ -57,6 +57,7 @@ class UsersController extends Controller
             if (!$this->isErrorMessageExists()) {
                 $hashPassword = password_hash($this->post->password,PASSWORD_DEFAULT);
                Users::RegisterUser($this->post->login, $hashPassword, $this->post->userType);
+               $this->redirect('/users/login');
             }
         }
         return $this->render();

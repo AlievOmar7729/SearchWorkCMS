@@ -23,6 +23,7 @@ $this->Title = "Реєстрація";
                 class="input"
                 type="text"
                 value="<?=$this->controller->post->login?>"
+                autocomplete="username"
                 id="login"
                 name="login"
                 onchange="this.setAttribute('value',this.value)"
@@ -35,6 +36,7 @@ $this->Title = "Реєстрація";
                 type="password"
                 value=""
                 id="password"
+                autocomplete="new-password"
                 name="password"
                 onchange="this.setAttribute('value',this.value)"
             >
@@ -46,6 +48,7 @@ $this->Title = "Реєстрація";
                 type="password"
                 value=""
                 id="password2"
+                autocomplete="new-password"
                 name="password2"
                 onchange="this.setAttribute('value',this.value)"
             >

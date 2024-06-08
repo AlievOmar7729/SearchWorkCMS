@@ -58,7 +58,22 @@ class Users extends Model
         $user->password = $password;
         if(!$role)
             $role = 'applicant';
+
         $user->role = $role;
         $user->save();
+        $user_id = self::FindByLogin($login)['user_id'];
+        switch ($role){
+            case 'applicant':
+                Applicant::Register($user_id);
+                break;
+            case 'employer':
+                Employer::Register($user_id);
+                break;
+            case 'admin':
+                Admin::Register($user_id);
+                break;
+        }
+
     }
+
 }

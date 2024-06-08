@@ -21,6 +21,7 @@ $this->Title = "Вхід на сайт";
                     type="text"
                     value="<?=$this->controller->post->login?>"
                     id="login"
+                    autocomplete="username"
                     name="login"
                     onchange="this.setAttribute('value',this.value)"
             >
@@ -32,6 +33,7 @@ $this->Title = "Вхід на сайт";
                     type="password"
                     value=""
                     id="password"
+                    autocomplete="current-password"
                     name="password"
                     onchange="this.setAttribute('value',this.value)"
             >

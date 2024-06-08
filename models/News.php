@@ -12,7 +12,7 @@ use core\Model;
  * @property string $title Заголовок новини
  * @property string $news Текст новини
  * @property Date $date_create Дата публікації новини
- * @property string $filename
+ * @property string $filename Шлях до фотографії для новини
  * @property int admin_id ID адміна , який опублікував новину
  */
 class News extends Model
