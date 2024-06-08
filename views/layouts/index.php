@@ -2,7 +2,9 @@
 /** @var string $Title */
 /** @var string $Content */
 if(empty($Title))
-    $Title = ""
+    $Title = "";
+if(empty($Content))
+    $Content = "";
 ?>
 
 
@@ -31,7 +33,7 @@ if(empty($Title))
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <ul class="navigationMenuUl">
             <li class="nav-itemLi">
-                <a href="#" class="nav-linkA">Новини</a>
+                <a href="http://searchwork/news/add" class="nav-linkA">Новини</a>
             </li>
             <li class="nav-itemLi">
                 <a href="#" class="nav-linkA">Знайти вакансії</a>

@@ -23,8 +23,9 @@ class DB
             $where_fields = array_keys($where);
             foreach ($where_fields as $field) {
                 $parts [] = "{$field} = :{$field}";
-                $where_string .= implode(' AND ', $parts);
+
             }
+            $where_string .= implode(' AND ', $parts);
         }
         else{
             if(is_string($where)){

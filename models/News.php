@@ -17,7 +17,7 @@ use core\Model;
  */
 class News extends Model
 {
-    public $table = "news";
-    public $primaryKey = 'news_id';
+    public static $tableName = "news";
+    public static $primaryKey = 'news_id';
 
 }

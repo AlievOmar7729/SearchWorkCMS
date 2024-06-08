@@ -1,0 +1,121 @@
+.authorizationDiv{
+    margin: 70px 30px 70px 30px;
+    background: linear-gradient(135deg, #ffffff, #f2f2f2);
+    padding: 100px 10px 190px 10px;
+    width: auto;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.input-wrapper {
+    position: relative;
+    display: block;
+    padding-bottom: 5px;
+    color: #2C3E50;
+    font-size: 30px;
+    margin-bottom: 1.4em;
+    width: 100%;
+}
+
+h1{
+    position: relative;
+    font-size: 4em;
+    top: -70px;
+}
+
+.indentationDiv{
+    height: 100px;
+}
+
+
+
+.loginButton{
+    padding: 5px 10px;
+    width: 200px;
+    height: 50px;
+    border: none;
+    background-color: #E67E22;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 24px;
+}
+
+.loginButton:hover {
+    background-color: #F39C12;
+    transform: translateY(-2px);
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+
+    padding: 10px;
+    width: 100%;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #2C3E50;
+    padding: 0.4em 0;
+    color: black;
+    font-size: 24px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input:focus {
+    border-color: #E67E22;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+}
+
+.input-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.3s;
+    color: #2C3E50;
+}
+
+.input:focus + .input-placeholder,
+.input:not([value=""]) + .input-placeholder {
+    top: -1.5em;
+    font-size: 16px;
+}
+
+@media (max-width: 722px) {
+    .authorizationDiv{
+        padding: 100px 10px 100px 10px;
+    }
+    h1{
+        font-size: 3em;
+        display: flex;
+        justify-content: center;
+    }
+    .loginForm{
+        justify-content: center;
+    }
+    .indentationDiv{
+        height: 50px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

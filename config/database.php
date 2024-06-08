@@ -2,7 +2,7 @@
 
 $Config[] = [
     'dbHost' => 'localhost',
-    'dbName' => 'searchwork',
+    'dbName' => 'searchworkcms',
     'dbLogin' => 'cms',
     'dbPassword' => 'cms123cms'
 ];

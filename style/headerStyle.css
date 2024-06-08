@@ -67,7 +67,7 @@ header {
 }
 #searchInput-position{
     border-radius: 15px 0 0 15px;
-    padding-right: 150px;
+    width: 350px;
 }
 
 .searchButton {
@@ -107,6 +107,9 @@ header {
         border-radius: 10px;
     }
 
+    #searchInput-position{
+        width: 96%;
+    }
     .navigationMenuUl.show {
         display: flex;
     }

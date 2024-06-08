@@ -11,13 +11,7 @@ class NewsController extends Controller
 {
     public function actionAdd($params)
     {
+        return $this->render('views/news/delete.php');
 
-        $news = new News();
-        $news->title = "title";
-        $news->news = "text";
-        $news->date_create = date("Y-m-d");
-        $news->news_id = 1;
-        $news->save();
-        return $this->render();
     }
 }
