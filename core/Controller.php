@@ -7,6 +7,7 @@ use JetBrains\PhpStorm\NoReturn;
 class Controller
 {
     protected $template;
+    protected $errorMessage;
     public $isPost = false;
     public $isGet = false;
     public $post;
@@ -29,6 +30,7 @@ class Controller
         }
         $this->post = new Post();
         $this->get = new Get();
+        $this->errorMessage = [];
     }
     public function render($pathToView = null): array
     {
@@ -44,13 +46,19 @@ class Controller
         die;
     }
 
-    public function setErrorMessage($message = null)
+    public function addErrorMessage($message = null)
     {
-        $this->template->setParam('error_message',$message);
+        $this->errorMessage [] = $message;
+        $this->template->setParam('error_message',implode('<br/>',$this->errorMessage));
     }
     public function clearErrorMessage()
     {
-        $this->setErrorMessage();
+        $this->errorMessage = [];
+        $this->template->setParam('error_message',null);
+    }
+    public function isErrorMessageExists()
+    {
+        return count($this->errorMessage) > 0;
     }
 
 }

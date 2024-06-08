@@ -29,15 +29,18 @@ class Router
         $controller = 'controllers\\'.ucfirst($parts[0])."Controller" ;
         $method = "action".ucfirst($parts[1]);
 
-        if(class_exists($controller) && method_exists($controller,$method)){
+        if(class_exists($controller)){
             $controllerObject = new $controller();
-            array_splice($parts,0,2);
-            return $controllerObject->$method($parts);
+            Core::get()->controllerObject = $controllerObject;
+            if(method_exists($controller,$method)){
+                array_splice($parts,0,2);
+                return $controllerObject->$method($parts);
+            }
+
         }
         else{
             $this->error(404);
         }
-        //!!! return
     }
 
     public function done(): void
@@ -49,8 +52,10 @@ class Router
         http_response_code($code);
         switch ($code){
             case 404:
-                echo "404 Not Found";
-                break;
+                header('Location: http://searchwork/');
+                die;
+            case 405:
+
         }
     }
 }

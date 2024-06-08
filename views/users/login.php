@@ -19,14 +19,13 @@ $this->Title = "Вхід на сайт"
             <input
                     class="input"
                     type="text"
-                    value=""
+                    value="<?=$this->controller->post->login?>"
                     id="login"
                     name="login"
                     onchange="this.setAttribute('value',this.value)"
             >
             <span class="input-placeholder">Логін</span>
         </label>
-        <div class="indentationDiv"></div>
         <label class="input-wrapper">
             <input
                     class="input"
@@ -39,6 +38,8 @@ $this->Title = "Вхід на сайт"
             <span class="input-placeholder">Пароль</span>
         </label>
         <button type="submit" class="loginButton">Увійти</button>
+        <br>
+        <a href="/users/register">Немає аккаунту ?</a>
     </form>
 </div>
 <style>

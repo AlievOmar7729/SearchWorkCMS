@@ -25,6 +25,15 @@ class Users extends Model
         else
             return null;
     }
+    public static function FindByLogin($login)
+    {
+        $rows = self::findByCondition(['login' => $login]);
+        if(!empty($rows))
+            return $rows[0];
+        else
+            return null;
+    }
+
     public static function IsUserLogged()
     {
         return !empty(Core::get()->session->get('user'));
@@ -36,5 +45,15 @@ class Users extends Model
     public static function LoggoutUser()
     {
         Core::get()->session->remove('user');
+    }
+    public static function RegisterUser($login,$password,$role = null)
+    {
+        $user = new Users();
+        $user->login = $login;
+        $user->password = $password;
+        if(!$role)
+            $role = 'applicant';
+        $user->role = $role;
+        $user->save();
     }
 }

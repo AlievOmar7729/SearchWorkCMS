@@ -7,6 +7,7 @@ class Template
 
     protected $templateFiltPath;
     protected $paramsArray;
+    public Controller $controller;
     public function __set($name,$value)
     {
         Core::get()->template->setParam($name,$value);
@@ -34,6 +35,9 @@ class Template
     public function getHTML(): string
     {
         ob_start();
+
+        if(\core\Core::get()->controllerObject)
+            $this->controller = \core\Core::get()->controllerObject;
         extract($this->paramsArray);
         include($this->templateFiltPath);
         $str = ob_get_contents();
