@@ -1,10 +1,19 @@
 <?php
 /** @var string $Title */
 /** @var string $Content */
+/** @var string $Role */
 if(empty($Title))
     $Title = "";
 if(empty($Content))
     $Content = "";
+
+if(isset($_SESSION['user'])){
+    $user = $_SESSION['user'];
+    $Role = $user['role'];
+}else{
+    $Role = "noLogged";
+}
+
 ?>
 
 
@@ -26,6 +35,8 @@ if(empty($Content))
 
 
 <header>
+
+    <?php if($Role == 'applicant'): ?>
     <div class="containerHeaderDiv">
         <a href="/" class="LogoA">
             <span class="LogoSpan">SearchWork</span>
@@ -46,6 +57,76 @@ if(empty($Content))
             </li>
         </ul>
     </div>
+    <?php endif; ?>
+    <?php if($Role == 'employer'): ?>
+        <div class="containerHeaderDiv">
+            <a href="/" class="LogoA">
+                <span class="LogoSpan">SearchWork</span>
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+            <ul class="navigationMenuUl">
+                <li class="nav-itemLi">
+                    <a href="/news/index" class="nav-linkA">Новини</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/users/index" class="nav-linkA">User Name</a>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
+    <?php if($Role == 'admin'): ?>
+        <div class="containerHeaderDiv">
+            <a href="/" class="LogoA">
+                <span class="LogoSpan">SearchWork</span>
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+            <ul class="navigationMenuUl">
+                <li class="nav-itemLi">
+                    <a href="/news/index" class="nav-linkA">Новини</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/users/index" class="nav-linkA">User Name</a>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
+    <?php if($Role == 'noLogged'): ?>
+        <div class="containerHeaderDiv">
+            <a href="/" class="LogoA">
+                <span class="LogoSpan">SearchWork</span>
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+            <ul class="navigationMenuUl">
+                <li class="nav-itemLi">
+                    <a href="/news/index" class="nav-linkA">Новини</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/index" class="nav-linkA">Знайти вакансії</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/vacancy/add" class="nav-linkA">Розмістити резюме</a>
+                </li>
+                <li class="nav-itemLi">
+                    <a href="/users/index" class="nav-linkA">User Name</a>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+
+
 
     <form class="SearchForm" role="search">
         <input type="search" class="searchInput" id="searchInput-position" placeholder="Position">

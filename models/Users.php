@@ -19,7 +19,11 @@ class Users extends Model
 
     public static function FindByLoginAndPassword($login,$password)
     {
-        $rows = self::findByCondition(['login' => $login, 'password' => $password]);
+        $user = self::FindByLogin($login);
+        $hashPassword = $user['password'];
+        if(password_verify($password,$hashPassword)){
+            $rows = self::findByCondition(['login' => $login, 'password' => $hashPassword]);
+        }
         if(!empty($rows))
             return $rows[0];
         else
@@ -33,6 +37,7 @@ class Users extends Model
         else
             return null;
     }
+
 
     public static function IsUserLogged(): bool
     {

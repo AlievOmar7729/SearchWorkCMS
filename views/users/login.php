@@ -1,6 +1,6 @@
 <?php
 /** @var string $error_message Повідомленя про помилку */
-$this->Title = "Вхід на сайт"
+$this->Title = "Вхід на сайт";
 ?>
 <head>
     <link href="../../style/usersLoginStyle.css" rel="stylesheet">
