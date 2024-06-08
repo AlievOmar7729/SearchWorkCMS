@@ -6,7 +6,7 @@ class Template
 {
 
     protected $templateFiltPath;
-    protected $paramsArray;
+    protected array $paramsArray;
     public Controller $controller;
     public function __set($name,$value)
     {
@@ -17,7 +17,7 @@ class Template
         $this->templateFiltPath = $templateFilePath;
         $this->paramsArray = [];
     }
-    public function setTemplateFilePath($path)
+    public function setTemplateFilePath($path): void
     {
         $this->templateFiltPath = $path;
     }

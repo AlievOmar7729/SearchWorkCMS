@@ -4,15 +4,15 @@ namespace core;
 
 class Core
 {
-    public $defaultLayoutPath = 'views/layouts/index.php';
+    public string $defaultLayoutPath = 'views/layouts/index.php';
     public $moduleName;
     public $actionName;
     public $router;
-    public $template;
-    public $db;
+    public Template $template;
+    public DB $db;
     public ?Controller $controllerObject = null;
     private static $instance;
-    public $session;
+    public Session $session;
      private function __construct()
      {
 
@@ -35,10 +35,7 @@ class Core
      public function done(): void
      {
          $this->template->display();
-        $this->router->done();
      }
-
-
      public static function get(): Core
      {
          if(empty(self::$instance)){

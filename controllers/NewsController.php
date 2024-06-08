@@ -9,9 +9,15 @@ use models\News;
 
 class NewsController extends Controller
 {
-    public function actionAdd($params)
+    public function actionIndex(): array
+    {
+        return $this->render();
+    }
+
+
+    public function actionAdd($params): array
     {
         return $this->render('views/news/delete.php');
-
     }
+
 }

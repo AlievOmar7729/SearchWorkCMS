@@ -18,7 +18,7 @@ class Router
     {
         $parts = explode('/',$this->route);
         if(strlen($parts[0]) == 0){
-            $parts[0] = "site";
+            $parts[0] = "news";
             $parts[1] = "index";
         }
         if(count($parts)==1){
@@ -43,10 +43,6 @@ class Router
         }
     }
 
-    public function done(): void
-    {
-
-    }
     public function error($code): void
     {
         http_response_code($code);

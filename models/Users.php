@@ -14,8 +14,8 @@ use core\Model;
 
 class Users extends Model
 {
-    public static $tableName = "users";
-    public static $primaryKey = 'user_id';
+    public static string $tableName = "users";
+    public static string $primaryKey = 'user_id';
 
     public static function FindByLoginAndPassword($login,$password)
     {
@@ -34,19 +34,19 @@ class Users extends Model
             return null;
     }
 
-    public static function IsUserLogged()
+    public static function IsUserLogged(): bool
     {
         return !empty(Core::get()->session->get('user'));
     }
-    public static function LoginUser($user)
+    public static function LoginUser($user): void
     {
         Core::get()->session->set('user',$user);
     }
-    public static function LoggoutUser()
+    public static function LogoutUser(): void
     {
         Core::get()->session->remove('user');
     }
-    public static function RegisterUser($login,$password,$role = null)
+    public static function RegisterUser($login,$password,$role = null): void
     {
         $user = new Users();
         $user->login = $login;

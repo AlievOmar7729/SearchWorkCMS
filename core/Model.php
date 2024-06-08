@@ -4,9 +4,9 @@ namespace core;
 
 class Model
 {
-    protected static $primaryKey = '';
-    protected static $tableName = '';
-    protected $fieldsArray;
+    protected static string $primaryKey = '';
+    protected static string $tableName = '';
+    protected array $fieldsArray;
 
     public function __construct()
     {
@@ -24,12 +24,12 @@ class Model
     }
 
 
-    public static function deleteById($id)
+    public static function deleteById($id): void
     {
         Core::get()->db->delete(static::$tableName, [static::$primaryKey => $id]);
     }
 
-    public static function deleteByCondition($conditionAssocArray)
+    public static function deleteByCondition($conditionAssocArray): void
     {
         Core::get()->db->delete(static::$tableName, $conditionAssocArray);
 
@@ -44,7 +44,7 @@ class Model
             return null;
     }
 
-    public static function findByCondition($conditionAssocArray)
+    public static function findByCondition($conditionAssocArray): false|array|null
     {
         $arr = Core::get()->db->select(static::$tableName,"*",$conditionAssocArray);
         if(count($arr) > 0)
@@ -53,7 +53,7 @@ class Model
             return null;
     }
 
-    public function save()
+    public function save(): void
     {
         $isInsert = false;
         if(!isset($this->{static::$primaryKey}))

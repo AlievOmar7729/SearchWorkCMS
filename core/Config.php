@@ -4,7 +4,7 @@ namespace core;
 
 class Config
 {
-    protected $params;
+    protected array $params;
     protected static $instance;
     private function __construct()
     {
@@ -12,7 +12,7 @@ class Config
         $directory = 'config';
         $config_files = scandir($directory);
         foreach ($config_files as $config_file){
-            if(substr($config_file,-4) === '.php'){
+            if(str_ends_with($config_file, '.php')){
                 $path = $directory.'/'.$config_file;
                 include($path);
 
@@ -25,7 +25,7 @@ class Config
 
 
     }
-    public static function get()
+    public static function get(): Config
     {
         if(empty(self::$instance)){
             self::$instance = new self();

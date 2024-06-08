@@ -6,12 +6,12 @@ use JetBrains\PhpStorm\NoReturn;
 
 class Controller
 {
-    protected $template;
-    protected $errorMessage;
-    public $isPost = false;
-    public $isGet = false;
-    public $post;
-    public $get;
+    protected Template $template;
+    protected array $errorMessage;
+    public bool $isPost = false;
+    public bool $isGet = false;
+    public Post $post;
+    public Get $get;
 
     public function __construct()
     {
@@ -46,17 +46,17 @@ class Controller
         die;
     }
 
-    public function addErrorMessage($message = null)
+    public function addErrorMessage($message = null): void
     {
         $this->errorMessage [] = $message;
         $this->template->setParam('error_message',implode('<br/>',$this->errorMessage));
     }
-    public function clearErrorMessage()
+    public function clearErrorMessage(): void
     {
         $this->errorMessage = [];
         $this->template->setParam('error_message',null);
     }
-    public function isErrorMessageExists()
+    public function isErrorMessageExists(): bool
     {
         return count($this->errorMessage) > 0;
     }

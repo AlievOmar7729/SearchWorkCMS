@@ -30,7 +30,7 @@ class UsersController extends Controller
     }
     public function actionLogout()
     {
-        Users::LoggoutUser();
+        Users::LogoutUser();
         return $this->redirect('/users/login');
     }
     public function actionRegister()
