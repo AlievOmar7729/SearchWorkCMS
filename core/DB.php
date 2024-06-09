@@ -59,6 +59,23 @@ class DB
         return $sth->fetchAll();
 
     }
+
+
+
+    public function selectOrderBy($table, $orderByField,$reverse = false): false|array
+    {
+
+        if($reverse === false)
+            $orderByDirection = 'DESC';
+        else
+            $orderByDirection = "ASC";
+        $sql = "SELECT * FROM {$table} ORDER BY {$orderByField} {$orderByDirection}";
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute();
+
+        return $sth->fetchAll();
+    }
+
     public function insert($table,$row_to_insert): int
     {
         $fields_list = implode(", ", array_keys($row_to_insert));

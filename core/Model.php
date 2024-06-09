@@ -2,6 +2,8 @@
 
 namespace core;
 
+use Couchbase\PrefixSearchQuery;
+
 class Model
 {
     protected static string $primaryKey = '';
@@ -47,6 +49,15 @@ class Model
     public static function findByCondition($conditionAssocArray): false|array|null
     {
         $arr = Core::get()->db->select(static::$tableName,"*",$conditionAssocArray);
+        if(count($arr) > 0)
+            return $arr;
+        else
+            return null;
+    }
+
+    public static function selectOrderByDESC($orderByField,$reverse = false)
+    {
+        $arr = Core::get()->db->selectOrderBy(static::$tableName,$orderByField,$reverse = false);
         if(count($arr) > 0)
             return $arr;
         else

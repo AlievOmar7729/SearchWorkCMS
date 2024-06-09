@@ -3,6 +3,7 @@
 namespace models;
 
 use Cassandra\Date;
+use core\Core;
 use core\Model;
 
 /**
@@ -25,5 +26,15 @@ class Admin extends Model
         $admin->save();
     }
 
+    public static function FindIdAdminByUser($user_id)
+    {
+
+        $rows = self::findByCondition(['user_id' => $user_id]);
+        if(!empty($rows))
+            return $rows[0];
+        else
+            return null;
+
+    }
 
 }

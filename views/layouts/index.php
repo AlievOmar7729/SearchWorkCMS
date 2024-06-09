@@ -4,7 +4,7 @@
 /** @var string $Role */
 /** @var string $Name */
 if(empty($Title))
-    $Title = "";
+    $Title = "SearchWork";
 if(empty($Content))
     $Content = "";
 

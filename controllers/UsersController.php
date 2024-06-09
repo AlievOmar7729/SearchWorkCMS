@@ -36,6 +36,9 @@ class UsersController extends Controller
 
     public function actionRegister()
     {
+        if (Users::IsUserLogged())
+            return $this->redirect('/');
+
         if ($this->isPost) {
             $user = Users::FindByLogin($this->post->login);
             if (!empty($user))

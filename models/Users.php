@@ -4,6 +4,7 @@ namespace models;
 
 use core\Core;
 use core\Model;
+use core\Session;
 
 /**
  * @property int $user_id ID користувача
@@ -43,6 +44,20 @@ class Users extends Model
     {
         return !empty(Core::get()->session->get('user'));
     }
+
+    public static function RoleUser()
+    {
+        if(self::IsUserLogged()) {
+            $user = $_SESSION['user'];
+            $role = $user['role'];
+            return $role;
+        }
+        else
+            return 'noLogged';
+
+    }
+
+
     public static function LoginUser($user): void
     {
         Core::get()->session->set('user',$user);

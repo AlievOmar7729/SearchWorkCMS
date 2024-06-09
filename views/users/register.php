@@ -5,7 +5,7 @@ $this->Title = "Реєстрація";
 
 ?>
 <head>
-    <link href="../../style/usersLoginStyle.css" rel="stylesheet">
+    <link href="../../style/FormStyle.css" rel="stylesheet">
 
 </head>
 

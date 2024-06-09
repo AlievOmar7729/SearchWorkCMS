@@ -3,7 +3,7 @@
 $this->Title = "Вхід на сайт";
 ?>
 <head>
-    <link href="../../style/usersLoginStyle.css" rel="stylesheet">
+    <link href="../../style/FormStyle.css" rel="stylesheet">
 
 </head>
 <div class="authorizationDiv">
