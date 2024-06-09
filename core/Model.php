@@ -22,8 +22,13 @@ class Model
 
     public function __get($name)
     {
-        return $this->fieldsArray[$name];
+        if (array_key_exists($name, $this->fieldsArray)) {
+            return $this->fieldsArray[$name];
+        } else {
+            return null;
+        }
     }
+
 
 
     public static function deleteById($id): void
@@ -34,7 +39,6 @@ class Model
     public static function deleteByCondition($conditionAssocArray): void
     {
         Core::get()->db->delete(static::$tableName, $conditionAssocArray);
-
     }
 
     public static function findById($id)
@@ -48,42 +52,42 @@ class Model
 
     public static function findByCondition($conditionAssocArray): false|array|null
     {
-        $arr = Core::get()->db->select(static::$tableName,"*",$conditionAssocArray);
-        if(count($arr) > 0)
+        $arr = Core::get()->db->select(static::$tableName, "*", $conditionAssocArray);
+        if (count($arr) > 0)
             return $arr;
         else
             return null;
     }
 
-    public static function selectOrderByDESC($orderByField,$reverse = false)
+    public static function selectOrderByDESC($orderByField, $reverse = false)
     {
-        $arr = Core::get()->db->selectOrderBy(static::$tableName,$orderByField,$reverse = false);
-        if(count($arr) > 0)
+        $arr = Core::get()->db->selectOrderBy(static::$tableName, $orderByField, $reverse = false);
+        if (count($arr) > 0)
             return $arr;
         else
             return null;
     }
 
-    public function save(): void
+    public function save()
     {
         $isInsert = false;
-        if(!isset($this->{static::$primaryKey}))
+        $pk = $this->{static::$primaryKey};
+        if (!isset($pk)) {
             $isInsert = true;
-        else{
+        } else {
             $value = $this->{static::$primaryKey};
-            if(empty($value))
+            if (empty($value)) {
                 $isInsert = true;
+            }
         }
-
-        if (!isset($this->{static::$primaryKey}) || empty($value)) {
+        if ($isInsert) {
             Core::get()->db->insert(static::$tableName, $this->fieldsArray);
         } else {
             Core::get()->db->update(static::$tableName, $this->fieldsArray, [
                 static::$primaryKey => $this->{static::$primaryKey}
-            ]);
+            ]);;
         }
-
     }
-
-
 }
+
+

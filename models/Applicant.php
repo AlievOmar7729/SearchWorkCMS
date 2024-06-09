@@ -27,4 +27,16 @@ class Applicant extends Model
         $applicant->save();
     }
 
+
+    public static function FindIdApplicantByUser($user_id)
+    {
+
+        $rows = self::findByCondition(['user_id' => $user_id]);
+        if(!empty($rows))
+            return $rows[0];
+        else
+            return null;
+
+    }
+
 }

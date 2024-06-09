@@ -45,6 +45,27 @@ class News extends Model
         return self::findById($news_id);
     }
 
+    public static function DeleteNews($news_id): void
+    {
+        self::deleteById($news_id);
+    }
+
+    public static function EditNews($news_id,$title,$newsText,$photourl,$admin_id)
+    {
+
+        $news = new News();
+
+        $news->news_id = $news_id;
+        $news->title = $title;
+        $news->news = $newsText;
+        $news->photourl = $photourl;
+        $news->admin_id = $admin_id;
+        $news->date_create = date('Y-m-d');
+
+        $news->save();
+    }
+
+
 
 
 }

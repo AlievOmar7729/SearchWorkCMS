@@ -25,4 +25,15 @@ class Employer extends Model
         $employer->save();
     }
 
+    public static function FindIdEmployerByUser($user_id)
+    {
+
+        $rows = self::findByCondition(['user_id' => $user_id]);
+        if(!empty($rows))
+            return $rows[0];
+        else
+            return null;
+
+    }
+
 }

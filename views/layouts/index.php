@@ -8,8 +8,9 @@ if(empty($Title))
 if(empty($Content))
     $Content = "";
 
-if(isset($_SESSION['user'])){
-    $user = $_SESSION['user'];
+$user = core\Core::get()->session->get('user');
+if(isset($user)){
+
     $Role = $user['role'];
     $Name = $user['login'];
 }else{

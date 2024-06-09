@@ -5,6 +5,9 @@ namespace controllers;
 use core\Controller;
 use core\Core;
 use http\Client\Curl\User;
+use models\Admin;
+use models\Applicant;
+use models\Employer;
 use models\Users;
 
 class UsersController extends Controller
@@ -66,5 +69,26 @@ class UsersController extends Controller
         return $this->render();
     }
 
+    public function actionIndex()
+    {
+        $userInfo = [];
+        if(Users::RoleUser() === 'Admin'){
+            $userInfo = Admin::FindIdAdminByUser(Core::get()->session->get('user')['user_id']);
+        }
+        if(Users::RoleUser() === 'Applicant'){
+            $userInfo = Applicant::FindIdApplicantByUser(Core::get()->session->get('user')['user_id']);
+        }
+        if(Users::RoleUser() === 'Employer'){
+            $userInfo = Employer::FindIdEmployerByUser(Core::get()->session->get('user')['user_id']);
+        }
+        $this->template->setParam('userInfo',$userInfo);
+        return $this->render();
+    }
+
+
+    public function actionEdit()
+    {
+        return $this->render();
+    }
 
 }

@@ -16,19 +16,25 @@ class NewsController extends Controller
 {
     public function actionIndex($params): array
     {
+        if (isset($params[0])) {
+            $news_id = $params[0];
+            $newsOne = News::ViewNews($news_id);
 
-        //Зробити при натисканні на одну новину (Виводии її повністю /index/id)
-        if(empty(News::ViewAllNews())){
-            $news = [];
-            $this->template->setParam('newsList',$news);
-            return $this->render();
+            if ($newsOne) {
+                $this->template->setParam('newsList', [$newsOne]);
+
+                return $this->render();
+            }
         }
-        $news = News::ViewAllNews();
 
-        $this->template->setParam('newsList',$news);
+        $news = News::ViewAllNews();
+        if (empty($news)) {
+            $news = [];
+        }
+
+        $this->template->setParam('newsList', $news);
         return $this->render();
     }
-
 
     public function actionAdd(): array
     {
@@ -63,7 +69,70 @@ class NewsController extends Controller
 
     }
 
+    public function actionDelete($params): array
+    {
+        if(Users::RoleUser() != 'admin'){
+            return $this->redirect('/');
+        }
+
+        if (!isset($params[0])) {
+            return $this->redirect('/');
+        }
+
+
+        $news_id = $params[0];
+        $newsOne = News::ViewNews($news_id);
+
+        if (!isset($newsOne)) {
+            return $this->redirect('/');
+        }
+
+        News::DeleteNews($news_id);
+        return $this->redirect('/');
+    }
+    public function actionEdit($params): array
+    {
+        if(Users::RoleUser() != 'admin'){
+            return $this->redirect('/');
+        }
+
+        if (!isset($params[0])) {
+            return $this->redirect('/');
+        }
+
+        $news_id = $params[0];
+        $newsOne = News::ViewNews($news_id);
+
+        if (!isset($newsOne)) {
+            return $this->redirect('/');
+        }
 
 
 
+        $this->template->setParam('newsEdit', $newsOne);
+        if ($this->isPost) {
+            $title = $this->post->title;
+            $news = $this->post->news;
+            $photourl = $this->post->photourl;
+
+            $admin_id = Admin::FindIdAdminByUser(Core::get()->session->get('user')['user_id'])['admin_id'];
+            if (empty($title))
+                $this->addErrorMessage('Заголовок не вказано');
+            if (empty($news))
+                $this->addErrorMessage('Текст новини не вказано');
+            if (empty($photourl))
+                $this->addErrorMessage('Посилання на фотографію для обкладинки не вказано');
+
+
+
+            if (!$this->isErrorMessageExists()) {
+                News::EditNews($news_id,$title,$news,$photourl,$admin_id);
+                return $this->redirect("/news/index/{$news_id}");
+            }
+        }
+
+        return $this->render();
+
+
+    }
 }
