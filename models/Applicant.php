@@ -39,4 +39,18 @@ class Applicant extends Model
 
     }
 
+    public static function EditInfo($name,$surname,$email,$phone,$applicant_id)
+    {
+        $applicant = new Applicant();
+
+        $applicant->name = $name;
+        $applicant->surname = $surname;
+        $applicant->email = $email;
+        $applicant->phone = $phone;
+        $applicant->applicant_id = $applicant_id;
+
+        $applicant->save();
+
+    }
+
 }

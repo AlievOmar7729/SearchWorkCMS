@@ -37,4 +37,16 @@ class Admin extends Model
 
     }
 
+
+    public static function EditInfo($username,$email,$admin_id)
+    {
+        $admin = new Admin();
+
+        $admin->username = $username;
+        $admin->email = $email;
+        $admin->admin_id = $admin_id;
+
+        $admin->save();
+    }
+
 }

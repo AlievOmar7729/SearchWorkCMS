@@ -8,6 +8,7 @@ use http\Client\Curl\User;
 use models\Admin;
 use models\Applicant;
 use models\Employer;
+use models\News;
 use models\Users;
 
 class UsersController extends Controller
@@ -61,9 +62,9 @@ class UsersController extends Controller
                 $this->addErrorMessage('Дозволена кількість символів в паролі користувача: від 7 до 30');
 
             if (!$this->isErrorMessageExists()) {
-                $hashPassword = password_hash($this->post->password,PASSWORD_DEFAULT);
-               Users::RegisterUser($this->post->login, $hashPassword, $this->post->userType);
-               $this->redirect('/users/login');
+                $hashPassword = password_hash($this->post->password, PASSWORD_DEFAULT);
+                Users::RegisterUser($this->post->login, $hashPassword, $this->post->userType);
+                $this->redirect('/users/login');
             }
         }
         return $this->render();
@@ -71,24 +72,95 @@ class UsersController extends Controller
 
     public function actionIndex()
     {
-        $userInfo = [];
-        if(Users::RoleUser() === 'Admin'){
-            $userInfo = Admin::FindIdAdminByUser(Core::get()->session->get('user')['user_id']);
-        }
-        if(Users::RoleUser() === 'Applicant'){
-            $userInfo = Applicant::FindIdApplicantByUser(Core::get()->session->get('user')['user_id']);
-        }
-        if(Users::RoleUser() === 'Employer'){
-            $userInfo = Employer::FindIdEmployerByUser(Core::get()->session->get('user')['user_id']);
-        }
-        $this->template->setParam('userInfo',$userInfo);
         return $this->render();
     }
 
 
     public function actionEdit()
     {
+        $userInfo = [];
+        if (Users::RoleUser() === 'admin') {
+            $userInfo = Admin::FindIdAdminByUser(Core::get()->session->get('user')['user_id']);
+        }
+        if (Users::RoleUser() === 'applicant') {
+            $userInfo = Applicant::FindIdApplicantByUser(Core::get()->session->get('user')['user_id']);
+        }
+        if (Users::RoleUser() === 'employer') {
+            $userInfo = Employer::FindIdEmployerByUser(Core::get()->session->get('user')['user_id']);
+        }
+        $this->template->setParam('userInfo', $userInfo);
+
+
+        if ($this->isPost) {
+            if (Users::RoleUser() === 'admin') {
+                $username = $this->post->username;
+                $email = $this->post->email;
+
+                $admin_id = Admin::FindIdAdminByUser(Core::get()->session->get('user')['user_id'])['admin_id'];
+
+                if (empty($username))
+                    $this->addErrorMessage('Нікнейм не вказано');
+                if (empty($email))
+                    $this->addErrorMessage('Пошту не вказано');
+
+                if (!$this->isErrorMessageExists()) {
+                    Admin::EditInfo($username, $email, $admin_id,);
+                    return $this->redirect("/users/index");
+                }
+            }
+            if (Users::RoleUser() === 'applicant') {
+                $name = $this->post->name;
+                $surname = $this->post->surname;
+                $email = $this->post->email;
+                $phone = $this->post->phone;
+
+                $applicant_id = Applicant::FindIdApplicantByUser(Core::get()->session->get('user')['user_id'])['applicant_id'];
+
+                if (empty($name))
+                    $this->addErrorMessage('Ім`я не вказано');
+                if (empty($email))
+                    $this->addErrorMessage('Пошту не вказано');
+                if (empty($surname))
+                    $this->addErrorMessage('Прізвище не вказано');
+                if (empty($phone))
+                    $this->addErrorMessage('Номер телефону не вказано');
+
+                if (!$this->isErrorMessageExists()) {
+                    Applicant::EditInfo($name, $surname, $email, $phone, $applicant_id);
+                    return $this->redirect("/users/index");
+                }
+
+            }
+            if (Users::RoleUser() === 'employer') {
+
+                $name_company = $this->post->name_company;
+                $email = $this->post->email;
+                $phone = $this->post->phone;
+                $about_company = $this->post->about_company;
+
+
+                $employer_id = Employer::FindIdEmployerByUser(Core::get()->session->get('user')['user_id'])['employer_id'];
+
+                if (empty($name_company))
+                    $this->addErrorMessage('Назву компанії не вказано');
+                if (empty($email))
+                    $this->addErrorMessage('Пошту не вказано');
+                if (empty($about_company))
+                    $this->addErrorMessage('Інформацію про компанію не вказано.');
+                if (empty($phone))
+                    $this->addErrorMessage('Номер телефону не вказано');
+
+                if (!$this->isErrorMessageExists()) {
+                    Employer::EditInfo($name_company,$email,$phone,$about_company,$employer_id);
+                    return $this->redirect("/users/index");
+                }
+
+            }
+
+
+
+        }
+
         return $this->render();
     }
-
 }

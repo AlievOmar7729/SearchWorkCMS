@@ -36,4 +36,21 @@ class Employer extends Model
 
     }
 
+
+    public static function EditInfo($name_company,$email,$phone,$about_company,$employer_id)
+    {
+        $employer = new Employer();
+
+        $employer->name_company = $name_company;
+        $employer->email = $email;
+        $employer->phone = $phone;
+        $employer->about_company = $about_company;
+        $employer->employer_id = $employer_id;
+
+        $employer->save();
+
+    }
+
+
+
 }

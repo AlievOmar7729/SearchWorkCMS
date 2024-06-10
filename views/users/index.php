@@ -79,7 +79,7 @@ if(isset($user)){
         </a>
     </div>
     <div class="news-container">
-        <a href="/resume/add" class="news-item">
+        <a href="/vacancy/add" class="news-item">
             <div>
                 <h2>Розмістити вакансію &#x1F4DD;</h2>
             </div>

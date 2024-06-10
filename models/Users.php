@@ -21,6 +21,8 @@ class Users extends Model
     public static function FindByLoginAndPassword($login,$password)
     {
         $user = self::FindByLogin($login);
+        if(empty($user))
+            return null;
         $hashPassword = $user['password'];
         if(password_verify($password,$hashPassword)){
             $rows = self::findByCondition(['login' => $login, 'password' => $hashPassword]);
@@ -90,5 +92,7 @@ class Users extends Model
         }
 
     }
+
+
 
 }
