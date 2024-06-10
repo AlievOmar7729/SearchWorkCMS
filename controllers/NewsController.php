@@ -38,6 +38,7 @@ class NewsController extends Controller
 
     public function actionAdd(): array
     {
+
         if(Users::RoleUser() != 'admin'){
             return $this->redirect('/');
         }

@@ -31,9 +31,6 @@ $this->Title = "Додати новину";
             <span class="input-placeholder">Заголовок</span>
         </label>
 
-
-
-
         <label class="input-wrapper">
             <textarea
                 class="input"

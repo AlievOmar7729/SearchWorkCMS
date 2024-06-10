@@ -54,7 +54,6 @@ header {
 .SearchForm {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
     border-top: 2px solid #ffffff;
     padding: 10px;
 

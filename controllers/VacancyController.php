@@ -83,4 +83,36 @@ class VacancyController extends Controller
         $this->template->setParam('myVacancy',$vacancyMy);
         return $this->render();
     }
+
+    public function actionIndex($params)
+    {
+
+        $array = [];
+
+        if(count($params) >= 6){
+            $array = ([
+                'position' => $params[0],
+                'location' => $params[1],
+                'salaryFrom' => $params[2],
+                'salaryTo' => $params[3],
+                'fullTime' => $params[4],
+                'partTime' => $params[5]
+            ]);
+            var_dump($array['partTime']);
+            # Зробити пошук для виводу вакансій по параметрам
+
+
+        }else{
+            # Вивід усіх вакансій
+        }
+
+
+
+
+
+
+
+        return $this->render();
+    }
+
 }

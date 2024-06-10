@@ -28,10 +28,11 @@ if(isset($user)){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../style/headerStyle.css" rel="stylesheet">
-    <link href="../../style/footerStyle.css" rel="stylesheet">
-    <link href="../../style/style.css" rel="stylesheet">
-    <script defer src="../../style/headerMenu.js"></script>
+    <link href="/style/headerStyle.css" rel="stylesheet">
+    <link href="/style/footerStyle.css" rel="stylesheet">
+    <link href="/style/style.css" rel="stylesheet">
+    <script defer src="/style/headerMenu.js"></script>
+    <script defer src="/style/search.js"></script>
     <title><?=$Title?></title>
 </head>
 <body>
@@ -129,11 +130,7 @@ if(isset($user)){
 
 
 
-    <form class="SearchForm" role="search">
-        <input type="search" class="searchInput" id="searchInput-position" placeholder="Position">
-        <input type="search" class="searchInput" id="searchInput-city" placeholder="City">
-        <button type="button" class="searchButton">Знайти вакансію</button>
-    </form>
+
 </header>
 
 <main>
