@@ -52,7 +52,17 @@ class Model
 
     public static function findByCondition($conditionAssocArray): false|array|null
     {
+
         $arr = Core::get()->db->select(static::$tableName, "*", $conditionAssocArray);
+        if (count($arr) > 0)
+            return $arr;
+        else
+            return null;
+    }
+    public static function findByConditionLike($conditionAssocArray): false|array|null
+    {
+
+        $arr = Core::get()->db->selectLike(static::$tableName, "*", $conditionAssocArray);
         if (count($arr) > 0)
             return $arr;
         else

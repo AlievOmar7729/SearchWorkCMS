@@ -52,7 +52,7 @@ $news = $newsList[0];
                     <?php echo $news['photourl']; ?>
                 <?php endif; ?>
                 <h2><?php echo $news['title']; ?></h2>
-                <p><?php echo substr($news['news'], 0, 100) . (strlen($news['news']) > 100 ? '...' : ''); ?></p>
+                <p><?php echo mb_substr($news['news'], 0, 100, 'UTF-8') . (mb_strlen($news['news'], 'UTF-8') > 100 ? ' ...' : ''); ?></p>
                 <p class="date">Дата публікації: <?php echo $news['date_create']; ?></p>
             </div>
         </a>

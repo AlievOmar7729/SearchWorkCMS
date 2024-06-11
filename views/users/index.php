@@ -11,7 +11,7 @@ if(isset($user)){
 }
 ?>
 <head>
-    <link href="../../style/news.css" rel="stylesheet">
+    <link href="/style/news.css" rel="stylesheet">
 </head>
 
 
@@ -48,9 +48,9 @@ if(isset($user)){
         </a>
     </div>
     <div class="news-container">
-        <a href="/resume/add" class="news-item">
+        <a href="/resume/my" class="news-item">
             <div>
-                <h2>Розмістити резюме &#x1F4DD;</h2>
+                <h2>Мої резюме &#x1F4DD;</h2>
             </div>
         </a>
     </div>
@@ -87,7 +87,7 @@ if(isset($user)){
     </div>
 
     <div class="news-container">
-        <a href="/resume/add" class="news-item">
+        <a href="/vacancy/my" class="news-item">
             <div>
                 <h2>Подані резюме &#x1F4E5; </h2>
             </div>
@@ -102,6 +102,7 @@ if(isset($user)){
         </a>
     </div>
 <?php endif; ?>
+
 
 
 

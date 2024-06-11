@@ -33,6 +33,7 @@ if(isset($user)){
     <link href="/style/style.css" rel="stylesheet">
     <script defer src="/style/headerMenu.js"></script>
     <script defer src="/style/search.js"></script>
+    <link rel="icon" href="/style/download.png" type="image/x-icon">
     <title><?=$Title?></title>
 </head>
 <body>
